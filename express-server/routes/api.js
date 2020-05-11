@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const dbHost = 'mongodb://database/mean-docker';
 
-mongoose.connect(dbHost);
+mongoose.connect(dbHost, {useMongoClient: true});
 const userSchema = new mongoose.Schema({
   name: String,
   age: Number
