@@ -1,0 +1,22 @@
+<div>
+  <br>
+    <h3>Docker TASD: Ro, Juli, Jorge</h3>
+    <form>
+      <div class="form-group">
+        <label for="name">Nombre.....</label>
+        <input type="text" class="form-control" id="name" #name>
+      </div>
+      <div class="form-group">
+        <label for="age">Edad</label>
+        <input type="number" class="form-control" id="age" #age>
+      </div>
+      <button type="button" (click)="addPerson(name.value, age.value)" class="btn btn-primary">Agregar</button>
+    </form>
+
+    <br>
+    <h3>Personas en MongoBD</h3>
+    <!-- Bootstrap Card -->
+    <div class="card card-block col-md-3" *ngFor="let person of people">
+      <h4 class="card-title" style="text-align: center;" >{{person.name}} - {{person.age}}</h4> <br>
+    </div>
+</div>
