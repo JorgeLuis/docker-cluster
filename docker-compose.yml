@@ -13,6 +13,8 @@ services:
     build: express-server # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
+    volumes:
+      - ./express-server:/usr/src/app
     links:
       - database
 
