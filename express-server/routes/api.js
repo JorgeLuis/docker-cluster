@@ -15,7 +15,7 @@ const User = mongoose.model('User', userSchema);
 
 // GET api listing
 router.get('/', (req, res) => {
-        res.send('Hola Mundo');
+        res.send('Hola Mundo, =)');
 });
 
 // GET all users

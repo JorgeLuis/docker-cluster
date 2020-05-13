@@ -22,3 +22,18 @@ services:
     image: mongo # specify image to build container from
     ports:
       - "27019:27017" # specify port forewarding
+  
+  redis-server:
+    container_name: redis
+    hostname: redis 
+    image: 'redis'
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+    - REDIS_HOSTS=local:redis:6379
+    ports:
+    - "8081:8081"

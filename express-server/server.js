@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 // Get our API routes
 const api = require('./routes/api');
+const apiRedis = require('./routes/redis-route');
 const app = express();
 
 // Parsers for POST data
@@ -23,6 +24,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', api);
+app.use('/', apiRedis);
 
 const port = process.env.PORT || '3000';
 app.set('port', port);
