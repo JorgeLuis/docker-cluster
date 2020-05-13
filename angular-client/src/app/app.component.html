@@ -1,22 +1,37 @@
 <div>
   <br>
-    <h3>Persistencia en Docker</h3>
-    <form>
-      <div class="form-group">
-        <label for="name">Nombre</label>
-        <input type="text" class="form-control" id="name" #name>
-      </div>
-      <div class="form-group">
-        <label for="age">Edad</label>
-        <input type="number" class="form-control" id="age" #age>
-      </div>
-      <button type="button" (click)="addPerson(name.value, age.value)" class="btn btn-primary">Agregar</button>
-    </form>
-
-    <br>
-    <h3>Personas en MongoBD</h3>
-    <!-- Bootstrap Card -->
-    <div class="card card-block col-md-3" *ngFor="let person of people">
-      <h4 class="card-title" style="text-align: center;" >{{person.name}} - {{person.age}}</h4> <br>
+  <h3>Persistencia en Docker</h3>
+  <form>
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" #name>
     </div>
+    <div class="form-group">
+      <label for="age">Edad</label>
+      <input type="number" class="form-control" id="age" #age>
+    </div>
+    <button type="button" (click)="addPerson(name.value, age.value)" class="btn btn-primary">Agregar</button>
+
+    &nbsp;&nbsp;&nbsp;
+    <!-- <mat-form-field>
+      <mat-label>Motor de BD</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option value="mongo">Mongo</mat-option>
+        <mat-option value="redis">Redis</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+      <input type="radio" id="mongo" name="motor" [(ngModel)]="flag" value="mongo">
+      <label class="my-margin" for="mongo">Mongo</label>&nbsp;
+      <input type="radio" id="redis" name="motor" [(ngModel)]="flag" value="redis">
+      <label class="my-margin" for="redis">Redis</label><br>
+      
+  </form>
+
+  <br>
+  <h3>Personas en MongoBD</h3>
+  <!-- Bootstrap Card -->
+  <div class="card card-block col-md-3" *ngFor="let person of people">
+    <h4 class="card-title" style="text-align: center;">{{person.name}} - {{person.age}}</h4> <br>
+  </div>
 </div>

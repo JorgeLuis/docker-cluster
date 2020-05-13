@@ -8,6 +8,20 @@ body {
     color: rgba(0, 0, 0, .85);
 }
 
+.my-margin {
+    margin-left: 5px;
+}
+.example-radio-group {
+    display: flex;
+    flex-direction:  row;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+
 /* Dark mode styles. */
 @media (prefers-color-scheme: dark) {
     body {

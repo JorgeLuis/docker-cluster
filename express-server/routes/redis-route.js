@@ -6,7 +6,9 @@ router.get("/redis/set/:key", async (req, res) => {
   const { key } = req.params;
   const value = req.query;
   await redisClient.setAsync(key, JSON.stringify(value));
-  return res.send("Success");
+  return res.json({
+    ok: true
+  });
 });
 
 router.get("/redis/get/:key", async (req, res) => {
