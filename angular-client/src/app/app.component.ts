@@ -31,12 +31,14 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         this.getAllPeople();
       });
-    } else {
+    } else if (this.flag === 'redis') {
       const url = `${this.API}/redis/set/${name}/?${name}=${age}`;
       console.log(url);
       this.http.get(url).subscribe((data) => {
         console.log(data);
       });
+    } else {
+      console.log('mysql');
     }
   }
 

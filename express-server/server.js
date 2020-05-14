@@ -5,8 +5,9 @@ const http = require('http');
 const bodyParser = require('body-parser');
 
 // Get our API routes
-const api = require('./routes/api');
+const apiMongo = require('./routes/mongo-route');
 const apiRedis = require('./routes/redis-route');
+const apiMysql = require('./routes/mysql-route');
 const app = express();
 
 // Parsers for POST data
@@ -23,8 +24,9 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', api);
+app.use('/', apiMongo);
 app.use('/', apiRedis);
+app.use('/', apiMysql);
 
 const port = process.env.PORT || '3000';
 app.set('port', port);

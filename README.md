@@ -1,11 +1,12 @@
 ## Ejemplo de persistencia Políglota en Docker
 
-Este ejemplo muestra 5 contenedores:
+Este ejemplo muestra 6 contenedores:
 1) Angular
 2) NodeJS
 3) Mongo
 4) Redis
 5) Redis Comander (ide de Redis para ver los campos)
+6) MySQL
 
 Primero descargar o clonar el ejemplo, se tiene que instalar las depencias en los proyectos de Node y Angular.
 
