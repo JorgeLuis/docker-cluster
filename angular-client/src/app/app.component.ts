@@ -45,7 +45,10 @@ export class AppComponent implements OnInit {
           this.getAllPeopleMysql();
         });
     } else {
-      console.log('NEO4J');
+      this.http.post(`${this.API}/neo4j/user`, { name, age })
+        .subscribe(() => {
+          this.getAllPeopleNeo4J();
+      });
     }
   }
 
@@ -63,7 +66,7 @@ export class AppComponent implements OnInit {
     this.nameDB = 'Mongo DB';
     this.http.get(`${this.API}/users`)
       .subscribe((people: any) => {
-        console.log(people);
+        //console.log(people);
         this.people = people;
       });
   }
@@ -73,7 +76,18 @@ export class AppComponent implements OnInit {
     const peoples = [];
     this.http.get(`${this.API}/redis/users`)
       .subscribe((people: any) => {
-        console.log(people);
+        //console.log(people);
+        this.people = people.data;
+      });
+  }
+
+  getAllPeopleNeo4J() {
+    this.nameDB = 'Neo4J';
+
+    const peoples = [];
+    this.http.get(`${this.API}/neo4j/users`)
+      .subscribe((people: any) => {
+        //console.log(people);
         this.people = people.data;
       });
   }

@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const apiMongo = require('./routes/mongo-route');
 const apiRedis = require('./routes/redis-route');
 const apiMysql = require('./routes/mysql-route');
+const apiNeo4J = require('./routes/neo4j-route');
 const app = express();
 
 // Parsers for POST data
@@ -27,6 +28,7 @@ app.use(function(req, res, next) {
 app.use('/', apiMongo);
 app.use('/', apiRedis);
 app.use('/', apiMysql);
+app.use('/', apiNeo4J);
 
 const port = process.env.PORT || '3000';
 app.set('port', port);

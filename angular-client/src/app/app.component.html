@@ -27,7 +27,7 @@
       <label class="my-margin" for="redis">Redis</label>&nbsp;
       <input type="radio" id="mysql" name="motor" [(ngModel)]="flag" value="mysql" (click)="getAllPeopleMysql()">
       <label class="my-margin" for="mysql">MySQL</label>&nbsp;
-      <input type="radio" id="neo4j" name="motor" [(ngModel)]="flag" value="neo4j">
+      <input type="radio" id="neo4j" name="motor" [(ngModel)]="flag" value="neo4j" (click)="getAllPeopleNeo4J()">
       <label class="my-margin" for="neo4j">Neo4j</label><br>
   </form>
   

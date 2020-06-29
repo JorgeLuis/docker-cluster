@@ -6,8 +6,8 @@ const connection = mysql.createConnection({
   host: "mysql-server",
   user: "root",
   password: "example",
-  database: "mydb", // la primera vez que se ejecuta hay que comentar esta linea
 });
+// database: "mydb", // la primera vez que se ejecuta hay que comentar esta linea
 
 /* console.log('______________________________________________________________');
 console.log(connection);

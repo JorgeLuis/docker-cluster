@@ -18,6 +18,8 @@ services:
     links:
       - mongo-server
       - mysql-server
+      - redis-server
+      - neo4j-server
 
   mongo-server: # name of the third service
     image: mongo # specify image to build container from
@@ -55,3 +57,22 @@ services:
       - 8085:8080
     depends_on:
       - mysql-server
+
+  neo4j-server:
+    container_name: neo4j
+    hostname: neo4j
+    image: neo4j
+    restart: always
+    expose:
+      - 7474
+      - 7687
+    ports:
+      - '7474:7474'
+      - '7687:7687'
+    environment:
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_dbms_shell_enabled=true
+      - NEO4J_AUTH=neo4j/admin
+      - NEO4JLABS_PLUGINS=["apoc"]
