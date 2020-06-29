@@ -21,12 +21,14 @@
       </mat-select>
     </mat-form-field> -->
 
-      <input type="radio" id="mongo" name="motor" [(ngModel)]="flag" value="mongo">
+      <input type="radio" id="mongo" name="motor" [(ngModel)]="flag" value="mongo" (click)="getAllPeopleMongo()">
       <label class="my-margin" for="mongo">Mongo</label>&nbsp;
       <input type="radio" id="redis" name="motor" [(ngModel)]="flag" value="redis">
       <label class="my-margin" for="redis">Redis</label>&nbsp;
-      <input type="radio" id="mysql" name="motor" [(ngModel)]="flag" value="mysql">
-      <label class="my-margin" for="mysql">MySQL</label><br>
+      <input type="radio" id="mysql" name="motor" [(ngModel)]="flag" value="mysql" (click)="getAllPeopleMysql()">
+      <label class="my-margin" for="mysql">MySQL</label>&nbsp;
+      <input type="radio" id="neo4j" name="motor" [(ngModel)]="flag" value="neo4j">
+      <label class="my-margin" for="neo4j">Neo4j</label><br>
   </form>
 
   <br>

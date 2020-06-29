@@ -21,29 +21,42 @@ export class AppComponent implements OnInit {
 
   // Angular 2 Life Cycle event when component has been initialized
   ngOnInit() {
-    this.getAllPeople();
+    this.getAllPeopleMongo();
   }
 
   // Add one person to the API
   addPerson(name, age) {
     if (this.flag === 'mongo') {
-      this.http.post(`${this.API}/users`, {name, age})
-      .subscribe(() => {
-        this.getAllPeople();
-      });
+      this.http.post(`${this.API}/users`, { name, age })
+        .subscribe(() => {
+          this.getAllPeopleMongo();
+        });
     } else if (this.flag === 'redis') {
       const url = `${this.API}/redis/set/${name}/?${name}=${age}`;
       console.log(url);
       this.http.get(url).subscribe((data) => {
         console.log(data);
       });
+    } else if (this.flag === 'mysql') {
+      this.http.post(`${this.API}/mysql/user`, { name, age })
+        .subscribe(() => {
+          this.getAllPeopleMysql();
+        });
     } else {
-      console.log('mysql');
+      console.log('NEO4J');
     }
   }
 
+  getAllPeopleMysql() {
+    console.log('DATO ingresado');
+    this.http.get(`${this.API}/mysql/users`)
+      .subscribe((people: any) => {
+        //console.log(people);
+        this.people = people.data;
+      });
+  }
   // Get all users from the API
-  getAllPeople() {
+  getAllPeopleMongo() {
     this.http.get(`${this.API}/users`)
       .subscribe((people: any) => {
         console.log(people);
