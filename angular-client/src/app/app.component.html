@@ -23,16 +23,16 @@
 
       <input type="radio" id="mongo" name="motor" [(ngModel)]="flag" value="mongo" (click)="getAllPeopleMongo()">
       <label class="my-margin" for="mongo">Mongo</label>&nbsp;
-      <input type="radio" id="redis" name="motor" [(ngModel)]="flag" value="redis">
+      <input type="radio" id="redis" name="motor" [(ngModel)]="flag" value="redis" (click)="getAllPeopleRedis()">
       <label class="my-margin" for="redis">Redis</label>&nbsp;
       <input type="radio" id="mysql" name="motor" [(ngModel)]="flag" value="mysql" (click)="getAllPeopleMysql()">
       <label class="my-margin" for="mysql">MySQL</label>&nbsp;
       <input type="radio" id="neo4j" name="motor" [(ngModel)]="flag" value="neo4j">
       <label class="my-margin" for="neo4j">Neo4j</label><br>
   </form>
-
+  
   <br>
-  <h3>Personas en MongoBD</h3>
+  <h3>Personas en {{nameDB}}</h3>
   <!-- Bootstrap Card -->
   <div class="card card-block col-md-3" *ngFor="let person of people">
     <h4 class="card-title" style="text-align: center;">{{person.name}} - {{person.age}}</h4> <br>

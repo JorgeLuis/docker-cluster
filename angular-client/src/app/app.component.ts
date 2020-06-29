@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
   selected = 'mongo';
   flag: any;
+  nameDB: any;
   // Link to our api, pointing to localhost
   API = 'http://localhost:3000';
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   // Angular 2 Life Cycle event when component has been initialized
   ngOnInit() {
     this.getAllPeopleMongo();
+    this.nameDB = 'Mongo DB';
   }
 
   // Add one person to the API
@@ -33,9 +35,9 @@ export class AppComponent implements OnInit {
         });
     } else if (this.flag === 'redis') {
       const url = `${this.API}/redis/set/${name}/?${name}=${age}`;
-      console.log(url);
+      // console.log(url);
       this.http.get(url).subscribe((data) => {
-        console.log(data);
+        this.getAllPeopleRedis();
       });
     } else if (this.flag === 'mysql') {
       this.http.post(`${this.API}/mysql/user`, { name, age })
@@ -48,6 +50,7 @@ export class AppComponent implements OnInit {
   }
 
   getAllPeopleMysql() {
+    this.nameDB = 'MySQL';
     console.log('DATO ingresado');
     this.http.get(`${this.API}/mysql/users`)
       .subscribe((people: any) => {
@@ -57,10 +60,21 @@ export class AppComponent implements OnInit {
   }
   // Get all users from the API
   getAllPeopleMongo() {
+    this.nameDB = 'Mongo DB';
     this.http.get(`${this.API}/users`)
       .subscribe((people: any) => {
         console.log(people);
         this.people = people;
+      });
+  }
+
+  getAllPeopleRedis() {
+    this.nameDB = 'Redis';
+    const peoples = [];
+    this.http.get(`${this.API}/redis/users`)
+      .subscribe((people: any) => {
+        console.log(people);
+        this.people = people.data;
       });
   }
 }

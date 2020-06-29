@@ -67,8 +67,6 @@ router.get('/mysql/users', (req, res) => {
       return res.status(200).json({ ok: true, data: result });
     }
   });
-      
-  
 });
 
 router.get("/mysql", (req, res) => {
