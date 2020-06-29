@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const dbHost = 'mongodb://database/mean-docker';
+const dbHost = 'mongodb://mongo-server/mean-docker';
 
 mongoose.connect(dbHost, {useNewUrlParser: true});
 const userSchema = new mongoose.Schema({

@@ -5,8 +5,9 @@ Este ejemplo muestra 6 contenedores:
 2) NodeJS
 3) Mongo
 4) Redis
-5) Redis Comander (ide de Redis para ver los campos)
+5) Redis Comander (herramienta para administrar contenido Redis)
 6) MySQL
+7) adminer (herramienta para administrar MYSQL )
 
 Primero descargar o clonar el ejemplo, se tiene que instalar las depencias en los proyectos de Node y Angular.
 

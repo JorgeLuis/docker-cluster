@@ -1,4 +1,4 @@
-version: '2' # specify docker-compose version
+version: '3' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
@@ -16,10 +16,10 @@ services:
     volumes:
       - ./express-server:/usr/src/app
     links:
-      - database
+      - mongo-server
       - mysql-server
 
-  database: # name of the third service
+  mongo-server: # name of the third service
     image: mongo # specify image to build container from
     ports:
       - "27019:27017" # specify port forewarding
@@ -44,6 +44,14 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-        - 3306:3306 
+        - 3307:3306 
     environment:
         MYSQL_ROOT_PASSWORD: example
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8085:8080
+    depends_on:
+      - mysql-server

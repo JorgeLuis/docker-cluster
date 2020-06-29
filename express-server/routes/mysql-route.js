@@ -5,7 +5,8 @@ const mysql      = require('mysql');
 const connection = mysql.createConnection({
   host: 'mysql-server',
   user     : 'root',
-  password : 'example'
+  password : 'example',
+  database : 'mydb'
 });
  
 /* console.log('______________________________________________________________');
@@ -26,12 +27,27 @@ connection.connect(function(err) {
   
 });
 router.get("/createTable", async (req, res) => {
-  const sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))";
+  const sql = "CREATE TABLE demo (name VARCHAR(255), address VARCHAR(255))";
   connection.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table created");
+    if (err) {
+      return res.json({ok: false, error: err});
+    } else {
+      console.log("Table created");
+      return res.json({ok: true});
+    }
   });
-  return res.json({ok: true});
+});
+
+router.get("/insertPeole", async (req, res) => {
+  const sql = "INSERT INTO customers (name, address) VALUES ('Jorge Luis', '31')";
+  connection.query(sql, function (err, result) {
+    if (err) {
+      return res.json({ok: false, error: err});
+    } else {
+      console.log("INSERT created");
+      return res.json({ok: true, data: 'INSER CREADO' });
+    }
+  });
 });
 
 router.get("/mysql", (req, res) => {
