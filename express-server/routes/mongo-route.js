@@ -18,6 +18,10 @@ router.get('/', (req, res) => {
         res.send('Hola Mundo, =)');
 });
 
+router.get('/mongo', (req, res) => {
+    res.send('MongoDB! =)');
+});
+
 // GET all users
 router.get('/users', (req, res) => {
     User.find({}, (err, users) => {
@@ -37,7 +41,7 @@ router.get('/users/:id', (req, res) => {
 });
 
 // Create a user
-router.post('/users', (req, res) => {
+router.post('/mongo/user', (req, res) => {
 
     let user = new User({
         name: req.body.name,

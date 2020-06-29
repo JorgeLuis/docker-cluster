@@ -3,6 +3,7 @@ version: '3' # specify docker-compose version
 # Define the services/containers to be run
 services:
   angular: # name of the first service
+    container_name: angular
     build: angular-client # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port forewarding
@@ -10,6 +11,7 @@ services:
       - ./angular-client:/app # this will enable changes made to the angular app reflect in the container
 
   express: #name of the second service
+    container_name: express
     build: express-server # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
@@ -22,6 +24,7 @@ services:
       - neo4j-server
 
   mongo-server: # name of the third service
+    container_name: mongo
     image: mongo # specify image to build container from
     ports:
       - "27019:27017" # specify port forewarding
@@ -42,6 +45,7 @@ services:
     - "8081:8081"
 
   mysql-server:
+    container_name: mysql
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -51,6 +55,7 @@ services:
         MYSQL_ROOT_PASSWORD: example
   
   adminer:
+    container_name: adminer
     image: adminer
     restart: always
     ports:
@@ -76,3 +81,20 @@ services:
       - NEO4J_dbms_shell_enabled=true
       - NEO4J_AUTH=neo4j/admin
       - NEO4JLABS_PLUGINS=["apoc"]
+
+  netdata:
+    container_name: netdata
+    image: netdata/netdata
+    restart: always
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - DOCKER_USR=root

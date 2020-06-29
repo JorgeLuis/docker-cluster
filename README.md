@@ -8,6 +8,8 @@ Este ejemplo muestra 6 contenedores:
 5) Redis Comander (herramienta para administrar contenido Redis)
 6) MySQL
 7) Adminer (herramienta para administrar MYSQL )
+8) Neo4J
+9) Netdata
 
 Primero descargar o clonar el ejemplo, se tiene que instalar las depencias en los proyectos de Node y Angular.
 

@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   // Add one person to the API
   addPerson(name, age) {
     if (this.flag === 'mongo') {
-      this.http.post(`${this.API}/users`, { name, age })
+      this.http.post(`${this.API}/mongo/user`, { name, age })
         .subscribe(() => {
           this.getAllPeopleMongo();
         });
