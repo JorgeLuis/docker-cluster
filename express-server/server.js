@@ -1,5 +1,6 @@
 // Get dependencies
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -9,8 +10,9 @@ const apiMongo = require('./routes/mongo-route');
 const apiRedis = require('./routes/redis-route');
 const apiMysql = require('./routes/mysql-route');
 const apiNeo4J = require('./routes/neo4j-route');
+const apiServer = require('./routes/serverDB-routes');
 const app = express();
-
+app.use(cors());
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,6 +31,7 @@ app.use('/', apiMongo);
 app.use('/', apiRedis);
 app.use('/', apiMysql);
 app.use('/', apiNeo4J);
+app.use('/', apiServer);
 
 const port = process.env.PORT || '3000';
 app.set('port', port);

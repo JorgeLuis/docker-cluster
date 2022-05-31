@@ -1,31 +1,30 @@
-.container2 {
-    width: 75%;
-    margin: 2rem auto;
+.my-div-color {
+  background-color: rgb(0 0 0 / 38%);
+  border-radius: 20px;
+  border-style: solid;
+  border-color: rgb(12 48 132 / 38%);
+  padding: 1%;
 }
-
-/* Default colors. */
-body {
-    color: rgba(0, 0, 0, .85);
-}
-
 .my-margin {
-    margin-left: 5px;
+  margin-left: 5px;
 }
-.example-radio-group {
-    display: flex;
-    flex-direction:  row;
-    margin: 15px 0;
-  }
-  
-  .example-radio-button {
-    margin: 5px;
-  }
-  
 
-/* Dark mode styles. */
-@media (prefers-color-scheme: dark) {
-    body {
-        color: rgba(255, 255, 255, .85);
-        background-color: rgba(0, 0, 0, .85);
-    }
+.my-color2 {
+  background-color: #177288;
+  border-radius: 10px;
+  text-align: center;
+  border-style: solid;
+  border-color: #5bc0de;
+}
+
+.my-color-boton{
+  background-color: #970c18;
+  border-color: rgb(0 0 0 / 12%);
+}
+.my-img {
+  /* display: block; */
+  margin: 0 auto;
+  max-width: 11%;
+  min-width: 20%;
+  /* clip-path: circle(28% at 52% 40%); */
 }

@@ -1,4 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #373a3c;
+  color: white;
+  font-size: 25px;
+  margin-top: 1%;
+  
+  /* place-items: center;
+  display: flex;
+  justify-content: center; */
+}
+
+html {
+  --scrollbarBG: #010f14;
+  --thumbBG: #222425;
+}
+body::-webkit-scrollbar {
+  width: 20px;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 5px solid var(--scrollbarBG);
+}

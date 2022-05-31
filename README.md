@@ -1,6 +1,6 @@
 ## Ejemplo de persistencia Políglota en Docker
 
-Este ejemplo muestra 6 contenedores:
+Este ejemplo muestra 9 contenedores:
 1) Angular
 2) NodeJS
 3) Mongo

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,88 +7,44 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  selected = 'mongo';
-  flag: any;
-  nameDB: any;
-  // Link to our api, pointing to localhost
+  selectecDB = 'mongo';
   API = 'http://localhost:3000';
-
-  // Declare empty list of people
   people: any[] = [];
+  namesDbs = [
+    { name: 'mongo', img: "../assets/mongo.png" },
+    { name: 'redis', img: "../assets/redis.png" },
+    { name: 'mysql', img: "../assets/mysql.png" },
+    { name: 'neo4j', img: "../assets/neo4j.png" }
+  ];
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {
-    this.flag = 'mongo';
-  }
-
-  // Angular 2 Life Cycle event when component has been initialized
   ngOnInit() {
-    this.getAllPeopleMongo();
-    this.nameDB = 'Mongo DB';
+    this.getUsers('mongo');
   }
 
-  // Add one person to the API
-  addPerson(name, age) {
-    if (this.flag === 'mongo') {
-      this.http.post(`${this.API}/mongo/user`, { name, age })
-        .subscribe(() => {
-          this.getAllPeopleMongo();
-        });
-    } else if (this.flag === 'redis') {
-      const url = `${this.API}/redis/set/${name}/?${name}=${age}`;
-      // console.log(url);
-      this.http.get(url).subscribe((data) => {
-        this.getAllPeopleRedis();
-      });
-    } else if (this.flag === 'mysql') {
-      this.http.post(`${this.API}/mysql/user`, { name, age })
-        .subscribe(() => {
-          this.getAllPeopleMysql();
-        });
-    } else {
-      this.http.post(`${this.API}/neo4j/user`, { name, age })
-        .subscribe(() => {
-          this.getAllPeopleNeo4J();
-      });
-    }
-  }
-
-  getAllPeopleMysql() {
-    this.nameDB = 'MySQL';
-    console.log('DATO ingresado');
-    this.http.get(`${this.API}/mysql/users`)
-      .subscribe((people: any) => {
-        //console.log(people);
-        this.people = people.data;
-      });
-  }
-  // Get all users from the API
-  getAllPeopleMongo() {
-    this.nameDB = 'Mongo DB';
-    this.http.get(`${this.API}/users`)
-      .subscribe((people: any) => {
-        //console.log(people);
-        this.people = people;
+  getUsers(nameDB) {
+    console.log('DB NAME: ', nameDB);
+    this.http.get(`${this.API}/server/users/${nameDB}`)
+      .subscribe((peoples: any) => {
+        console.log('Respuesta del Back: ', peoples);
+        this.people = peoples.data;
       });
   }
 
-  getAllPeopleRedis() {
-    this.nameDB = 'Redis';
-    const peoples = [];
-    this.http.get(`${this.API}/redis/users`)
-      .subscribe((people: any) => {
-        //console.log(people);
-        this.people = people.data;
+  postUser(name, age) {
+    this.http.post(`${this.API}/server/user/${this.selectecDB}`, { name, age })
+      .subscribe(() => {
+        this.getUsers(this.selectecDB);
       });
   }
 
-  getAllPeopleNeo4J() {
-    this.nameDB = 'Neo4J';
-
-    const peoples = [];
-    this.http.get(`${this.API}/neo4j/users`)
-      .subscribe((people: any) => {
-        //console.log(people);
-        this.people = people.data;
+  deletedUsers(nameDB) {
+    console.log('DB NAME: ', nameDB);
+    this.http.delete(`${this.API}/server/users/${nameDB}`)
+      .subscribe((peoples: any) => {
+        this.people= peoples.users;
+        console.log('Respuesta del Back: ', peoples);
       });
   }
+
 }
