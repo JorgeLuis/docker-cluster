@@ -30,3 +30,8 @@ http://localhost:3000/redis/set/key1/?key1=Dato 1
 ```
 http://localhost:3000/redis/get/key1
 ```
+
+Link de referencias:
+```
+https://docs.docker.com/compose/compose-file/
+```
