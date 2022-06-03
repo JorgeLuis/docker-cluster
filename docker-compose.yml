@@ -1,4 +1,4 @@
-version: '3' # specify docker-compose version
+version: '3.9' # specify docker-compose version
 
 # Define the services/containers to be run
 services:
@@ -17,11 +17,15 @@ services:
       - "3000:3000" #specify ports forewarding
     volumes:
       - ./express-server:/usr/src/app
-    links:
-      - mongo-server
-      - mysql-server
-      - redis-server
-      - neo4j-server
+    depends_on:
+      mongo-server:
+        condition: "service_started"
+      mysql-server:
+        condition: "service_healthy"
+      redis-server:
+        condition: "service_started"
+      neo4j-server:
+        condition: "service_started"
 
   mongo-server: # name of the third service
     container_name: mongo
@@ -52,7 +56,14 @@ services:
     ports:
         - 3307:3306 
     environment:
-        MYSQL_ROOT_PASSWORD: example
+        MYSQL_ROOT_PASSWORD: 123456 
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10000
+      interval: 5s
+    volumes:             
+    - ./init:/docker-entrypoint-initdb.d
   
   adminer:
     container_name: adminer

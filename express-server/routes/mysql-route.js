@@ -5,13 +5,10 @@ const mysql = require("mysql");
 const connection = mysql.createConnection({
   host: "mysql-server",
   user: "root",
-  password: "example",
+  password: "123456",
   database: "mydb"
 });
-// database: "mydb", // la primera vez que se ejecuta hay que comentar esta linea
 
-//console.log('______________________________________________________________');
-//console.log(connection);
 console.log('______________________________________________________________');
 connection.connect(function (err) {
   if (err) {
@@ -28,23 +25,11 @@ connection.connect(function (err) {
     });
   }
 });
-router.get("/createTable", async (req, res) => {
-  const sql = "CREATE TABLE usuarios (name VARCHAR(255), age int)";
-  connection.query(sql, function (err, result) {
-    if (err) {
-      return res.json({ ok: false, error: err });
-    } else {
-      console.log("Mysql: Table created");
-      return res.json({ ok: true });
-    }
-  });
-});
+
 
 router.post("/mysql/user", async (req, res) => {
   const userName = req.body.name;
   const userAge = req.body.age;
-
-  //console.log("USER FRONT..............:  ", userName, "......", userAge);
 
   const sql = "INSERT INTO usuarios (name, age) VALUES ( '"+ userName +"', '" + userAge + "')";
   connection.query(sql, function (err, result) {
@@ -90,8 +75,6 @@ module.exports.get = async function (res) {
 module.exports.post = async function (req, res) {
   const userName = req.body.name;
   const userAge = req.body.age;
-
-  //console.log("USER FRONT..............:  ", userName, "......", userAge);
 
   const sql = "INSERT INTO usuarios (name, age) VALUES ( '"+ userName +"', '" + userAge + "')";
   connection.query(sql, function (err, result) {
